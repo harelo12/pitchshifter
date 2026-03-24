@@ -178,3 +178,33 @@ docker run --rm -p 3000:3000 --env-file .env pitchshifter-backend
 - Este backend usa sesión de servidor. Para apps móviles/escritorio puedes mantener cookies de sesión o extender a JWT en una siguiente iteración.
 - En producción debes configurar `SESSION_SECRET` robusto y cookies seguras detrás de HTTPS.
 - El algoritmo de pitch shift usa FFmpeg con compensación de tempo; la calidad final depende de codec/origen y build de FFmpeg.
+
+
+## 13) Frontend mínimo incluido (`frontend/`)
+
+Se añadió una UI mínima en `frontend/` (Vite vanilla) que implementa el flujo completo:
+
+- Botón **Entrar con Google** (`/api/v1/auth/google`).
+- Manejo de redirecciones de OAuth (`/auth/success`, `/auth/error`).
+- Consulta de sesión actual (`/api/v1/auth/me`).
+- Consulta de configuración de procesamiento (`/api/v1/pitch/config`).
+- Formulario para subir archivo real + semitonos + formato de salida.
+- Envío a `POST /api/v1/pitch/process` y descarga automática del blob devuelto.
+
+### Ejecutar frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+El frontend corre en `http://localhost:5173` y usa proxy de Vite para enviar `/api/*` al backend en `http://localhost:3000`.
+
+### Variables OAuth para desarrollo local
+
+Asegúrate de mantener estos valores alineados:
+
+- `FRONTEND_SUCCESS_REDIRECT=http://localhost:5173/auth/success`
+- `FRONTEND_FAILURE_REDIRECT=http://localhost:5173/auth/error`
+- `CORS_ALLOWED_ORIGINS=http://localhost:5173`

@@ -39,7 +39,8 @@ const env = {
   ffmpegPath: process.env.FFMPEG_PATH || 'ffmpeg',
   ffprobePath: process.env.FFPROBE_PATH || 'ffprobe',
   apiRateLimitWindowMs: toNumber(process.env.API_RATE_LIMIT_WINDOW_MS, 15 * 60 * 1000),
-  apiRateLimitMaxRequests: toNumber(process.env.API_RATE_LIMIT_MAX_REQUESTS, 60)
+  apiRateLimitMaxRequests: toNumber(process.env.API_RATE_LIMIT_MAX_REQUESTS, 60),
+  corsAllowedOrigins: toArray(process.env.CORS_ALLOWED_ORIGINS, ['http://localhost:5173']),
 };
 
 module.exports = { env };

@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const helmet = require('helmet');
+const cors = require('cors');
 const passport = require('passport');
 const { appConfig } = require('./config/appConfig');
 require('./config/passport');
@@ -13,6 +14,10 @@ const app = express();
 app.locals.config = appConfig;
 
 app.use(helmet());
+app.use(cors({
+  origin: appConfig.security.cors.allowedOrigins,
+  credentials: true
+}));
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(apiRateLimiter);

@@ -45,6 +45,9 @@ const appConfig = {
     rateLimit: {
       windowMs: env.apiRateLimitWindowMs,
       max: env.apiRateLimitMaxRequests
+    },
+    cors: {
+      allowedOrigins: env.corsAllowedOrigins
     }
   }
 };

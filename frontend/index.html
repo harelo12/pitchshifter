@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PitchShifter UI</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>PitchShifter</h1>
+      <p class="subtitle">OAuth con Google + subida de canciones + cambio de tono.</p>
+
+      <section class="panel">
+        <h2>1) Sesión</h2>
+        <p id="auth-status">Comprobando sesión...</p>
+        <div class="row">
+          <button id="login-btn" type="button">Entrar con Google</button>
+          <button id="logout-btn" type="button">Cerrar sesión</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2) Procesar audio</h2>
+        <form id="process-form">
+          <label>
+            Archivo de audio
+            <input id="audio-input" name="audio" type="file" accept="audio/*" required />
+          </label>
+
+          <label>
+            Semitonos (-24 a 24)
+            <input id="semitones-input" name="semitones" type="number" min="-24" max="24" step="1" value="0" required />
+          </label>
+
+          <label>
+            Formato de salida
+            <select id="output-format" name="outputFormat"></select>
+          </label>
+
+          <button id="process-btn" type="submit">Procesar y descargar</button>
+        </form>
+        <p id="process-status"></p>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
